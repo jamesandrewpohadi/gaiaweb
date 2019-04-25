@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include config %> 
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>GAIA</title>
+    <link rel = "icon" href =  "/GAIA.png" type = "image/x-icon">
+    <style>
+        
+        
+
+        p {
+            margin-left: 10vw;
+            margin-right: 10vw;
+            font-size: 1.5em;
+            /*font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));*/
+            
+        }
+
+        @media only screen and (max-width: 1000px) {
+            p {
+            
+        }
+}
+        
+        
+        @font-face {
+            font-family: "Honeyflower-Regular";
+            /* src: url('css/fonts/yoster.ttf') format("truetype"); Safari, Android, iOS */
+            src: url('fonts/Xolonium-Regular.ttf') format("truetype");
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background-color: #fff;
+            color: #555;
+            /* font-family: 'Lato', 'Arial','sans-serif'; */
+            font-family: "Honeyflower-Regular" !important;
+            font-weight: 300;
+            font-size: 20px;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .row {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            margin: 0;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 240%;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            word-spacing: 4px;
+            text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            margin-left: -7em;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            width: 8em;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .main-nav {
+            float: left;
+            list-style: none;
+            margin-top: 55px;
+        }
+        
+        .main-nav li {
+            display: inline-block;
+            margin-left: 40px;
+        }
+        
+        .main-nav li a,
+        .main-nav li a:visited {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.6em;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom .2s;
+            padding: 5px 0;
+            text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+        }
+        
+        .main-nav li a:hover,
+        .main-nav li a:active {
+            border-bottom: 2px solid var(--complement-color);
+            transition: border-bottom .2s;
+        }
+        
+        .nav-container {
+            z-index: 1;
+            position: fixed;
+            width: 100vw;
+            height: 130px;
+            background-image: linear-gradient(to right, rgb(3, 67, 63), rgb(0, 174, 255));
+        }
+        
+        .nav-container.solid-nav {
+            background-color: var(--main-color);
+            transition: background-color 0.5s linear;
+        }
+
+        .user.register {
+                font-size: 1em;
+            }
+    </style>
+
+</head>
+
+<body>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCrphpoB8N9n52mf1E6V5vVbNTkaaS_V-Q",
+        authDomain: "gaia-f511d.firebaseapp.com",
+        databaseURL: "https://gaia-f511d.firebaseio.com",
+        projectId: "gaia-f511d",
+        storageBucket: "gaia-f511d.appspot.com",
+        messagingSenderId: "1066778570053"
+    };
+    firebase.initializeApp(config);
+</script>
+        
+        <nav class="nav-container">
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href="/">GAIA</a></li>
+                    <li class="hidden-sm hidden-xs"><a href="https://www.globalmangrove.org/adopt-a-tree">Purchase GRO</a></li>
+                    <li class="hidden-sm hidden-xs"><a href="/tutorial">Tutorial</a></li>
+                    <li class="hidden-sm hidden-xs"><a href="/wikis">Wikis</a></li>
+                    <li class="hidden-sm hidden-xs"><a href="/download">Download</a></li>
+                    <li><a href="JavaScript:void(0);" class="user">&equiv;
+                                  <div id="myDropdown" class="dropdown-content">
+                                      <a id="signout" href="JavaScript:void(0);">SignOut</a>
+            </div>
+            </a>
+    
+            </ul>
+            </div>
+        </nav>
+
+    <script>
+        // Close the dropdown if the user clicks outside of it
+        
+        firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        $(".user").addClass("register")
+                        $(".user").text(user.email);
+                    } else {
+                        // No user is signed in.
+                    }
+                });
+        
+        $("#signout").click(function() {
+            firebase.auth().signOut();
+            localStorage.setItem("gaiausername","");
+            $(".user").removeClass("register")
+            $(".user").text("\u2261");
+        })
+        window.onclick = function(event) {
+            if (!event.target.matches('.user')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            } else {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+        }
+
+        function consistentHeader() {
+            var height = $('header').height();
+                var scrollTop = $(window).scrollTop();
+                var docHeight = $(document).height();
+                var winHeight = $(window).height();
+                var colorToken = $(".nav-container").css("background-color").split(",");
+                console.log(colorToken);
+                colorToken.pop();
+                colorToken.join(",");
+               // $('.nav-container').css('background-color', colorToken + ","+ Math.min(scrollTop / (winHeight), 0.99) + ')')
+                console.log(colorToken + ","+ Math.min(scrollTop / (winHeight), 1) + ')');
+                if (screen.width >= 480) {
+                    // $('.main-nav').css('margin-top', 55 - 20 * Math.min(scrollTop, winHeight) / winHeight)
+                    // $('.nav-container').css('height', 130 - 40 * Math.min(scrollTop, winHeight) / winHeight)
+                    $('.main-nav').css('margin-top', 55 - 20 * Math.min(scrollTop, 10) / 10)
+                    $('.nav-container').css('height', 130 - 40 * Math.min(scrollTop, 10) / 10)
+                }
+        }
+
+        $(document).ready(function() {
+            consistentHeader();
+
+            $(window).scroll(function() {
+
+                consistentHeader();
+
+            });
+        });
+    </script>
+</body>
+
+</html>
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+
+    <% include config %>
+    <link rel="stylesheet" href="css/bootstrap.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            @font-face {
+                font-family: "Honeyflower-Regular";
+                src: url('fonts/Xolonium-Regular.ttf') format("truetype");
+                /* Safari, Android, iOS */
+            }
+            
+            html {
+                background-color: #fff;
+                color: #555;
+                /* font-family: 'Lato', 'Arial','sans-serif'; */
+                font-family: "Honeyflower-Regular";
+                font-weight: 300;
+                font-size: 20px;
+                text-rendering: optimizeLegibility;
+            }
+            
+            .row {
+                max-width: 1140px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                margin: 0;
+                margin-bottom: 20px;
+                color: #fff;
+                font-size: 240%;
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                word-spacing: 4px;
+                text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+            }
+            
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                margin-left: -7em;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                width: 8em;
+            }
+            
+            .show {
+                display: block;
+            }
+            
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            
+            .main-nav {
+                float: left;
+                list-style: none;
+                margin-top: 55px;
+            }
+            
+            .main-nav li {
+                display: inline-block;
+                margin-left: 40px;
+            }
+            
+            .main-nav li a,
+            .main-nav li a:visited {
+                color: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 1.6em;
+                border-bottom: 2px solid transparent;
+                transition: border-bottom .2s;
+                padding: 5px 0;
+                text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+            }
+            
+            .user.register {
+                font-size: 1.3em;
+            }
+            
+            .main-nav li a:hover,
+            .main-nav li a:active {
+                border-bottom: 2px solid #e74c3c;
+                transition: border-bottom .2s;
+            }
+            
+            .nav-container {
+                top:0px;
+                left:0px;
+                z-index: 1;
+                position: fixed; 
+                width: 100vw;
+                height: 130px;
+                /* background-color: rgba(50, 10, 135, 1); */
+                /* background-color: var(--main-color); */
+                background-image: linear-gradient(to right, rgb(9, 38, 116), rgb(0, 174, 255));
+                box-shadow: 0px 2px 5px var(--main-color);
+            }
+            
+            .nav-container.solid-nav {
+                background-color: var(--main-color);
+                transition: background-color 0.5s linear;
+            }
+        </style>
+
+</head>
+
+<body>
+    <script src="js/bootstrap.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    
+    <nav class="nav-container">
+        <div class="row">
+            <ul class="main-nav">
+                <li><a href="#">GAIA</a></li>
+                <li class="hidden-sm hidden-xs"><a href="https://www.globalmangrove.org/adopt-a-tree">Purchase GRO</a></li>
+                <li class="hidden-sm hidden-xs"><a href="/tutorial">Tutorial</a></li>
+                <li class="hidden-sm hidden-xs"><a href="/wikis">Wikis</a></li>
+                <li class="hidden-sm hidden-xs"><a href="/download">Download</a></li>
+                <li><a href="JavaScript:void(0);" class="user">&equiv;
+                              <div id="myDropdown" class="dropdown-content">
+                                  <a id="signout" href="JavaScript:void(0);">SignOut</a>
+        </div>
+        </a>
+
+        </ul>
+        </div>
+    </nav>
+
+    <script>
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.user')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            } else {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+        }
+
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+
+                var height = $('header').height();
+                var scrollTop = $(window).scrollTop();
+                var docHeight = $(document).height();
+                var winHeight = $(window).height();
+                if (screen.width >= 480) {
+                    $('.main-nav').css('margin-top', 55 - 20 * Math.min(scrollTop, winHeight) / winHeight)
+                    $('.nav-container').css('height', 130 - 40 * Math.min(scrollTop, winHeight) / winHeight)
+                }
+
+            });
+        });
+        $("#signout").click(function() {
+            firebase.auth().signOut();
+        });
+    </script>
+</body>
+
+</html> -->

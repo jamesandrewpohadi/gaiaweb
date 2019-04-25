@@ -1,0 +1,26 @@
+{
+  "name": "gaia_web",
+  "version": "1.0.0",
+  "description": "a web application that supports GAIA game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesandrewpohadi/gaia_web.git"
+  },
+  "author": "jamesandrewpohadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesandrewpohadi/gaia_web/issues"
+  },
+  "homepage": "https://github.com/jamesandrewpohadi/gaia_web#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "engines": {
+    "node": "9.0.0"
+  }
+}

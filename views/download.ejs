@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        *{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html{
+  background-color:#fff;
+  color:#555;
+  font-family: 'Lato', 'Arial','sans-serif';
+  font-weight:300;
+  font-size:20px;
+  text-rendering: optimizeLegibility;
+}
+
+#myVideo {
+    
+   background-color: rgba(0, 0, 0, 0.9);
+   background-blend-mode: lighten;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  min-width: 100vw; 
+  min-height: var(--height);
+}
+
+.row{
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+
+header{
+  background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.7)),url("/images/Yggdrasil.jpg");
+  background-size:cover;
+  background-position:center;
+  height:var(--height);
+  overflow: hidden;
+}
+
+
+
+h1{
+  margin:0;
+  margin-bottom:20px;
+  color:#fff;
+  font-size:240%;
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  word-spacing:4px;
+  text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+}
+
+h2 {
+  font-weight:300;
+  font-size:200%;
+  color: #fff;
+}
+
+h3 {
+  font-weight:300;
+  font-size:170%;
+  color: #fff;
+}
+
+p{
+  margin: 30px;
+    color: rgba(#444, 0.9);
+    font-family: "Merriweather", serif;
+    font-size: 1em;
+    line-height: 1.9;
+}
+
+/*p::first-letter {
+      float: left;
+      display: inline;
+      padding: 25px 10px 15px 0;
+      color: #333;
+      font-size: 5em;
+      line-height: 0.2;
+    }*/
+
+/* .hero-text-box{
+  position:absolute;
+  width:1140px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+
+.btn:link,.btn:visited{
+  display:inline-block;
+  padding: 10px 30px;
+  font-weight:300;
+  text-decoration:none;
+  border-radius:30px;
+  color:#fff;
+}
+
+.btn:hover,.btn:active{
+  background-color:#e74c3c;
+  color: white;
+  transition:background-color .3s;
+}
+
+.btn-ghost:link,.btn:visited{
+  border: 2px solid #e74c3c;
+}
+
+
+.logo{
+  height: 105px;
+  width:auto;
+  float:left;
+  margin-top:20px;
+}
+
+
+.main-nav{
+  float:right;
+  list-style:none;
+  margin-top:55px;
+}
+
+.main-nav li{
+  display: inline-block;
+  margin-left:40px;
+}
+
+.main-nav li a:link, .main-nav li a:visited{
+  color: #fff;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-size: 90%;
+  border-bottom: 2px solid transparent;
+  transition:border-bottom .2s;
+  padding: 5px 0;
+  text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+
+}
+
+.main-nav li a:hover, .main-nav li a:active{
+  border-bottom: 2px solid #e74c3c;
+  transition: border-bottom .2s;
+  
+}
+
+.nav-container {
+  z-index: 1;
+  position:fixed;
+  width:100vw;
+  height: 130px;
+  background-color: rgba(50, 10, 135, 0);
+}
+
+.nav-container.solid-nav {
+  background-color: rgb(50, 10, 135);
+  transition: background-color 0.5s linear;
+}
+
+@media only screen and (max-width: 1140px) {
+  .hero-text-box{
+  position:absolute;
+  width:940px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:940px;
+  }
+}
+
+
+@media only screen and (max-width: 960px) {
+  .hero-text-box{
+  position:absolute;
+  width:840px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:840px;
+  }
+}
+
+
+@media only screen and (max-width: 960px) {
+  .hero-text-box{
+  position:absolute;
+  width:740px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:740px;
+  }
+  h1{
+    font-size:200%;
+  }
+}
+
+
+@media only screen and (max-width: 740px) {
+  .hero-text-box{
+  position:absolute;
+  width:640px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:640px;
+  }
+  h1{
+    font-size:180%;
+  }
+  
+.btn:link,.btn:visited{
+  display:inline-block;
+  padding: 8px 15px;
+  font-weight:300;
+  text-decoration:none;
+  border-radius:30px;
+  color:#fff;
+  font-size:16px;
+}
+}
+
+
+@media only screen and (max-width: 640px) {
+  .hero-text-box{
+  position:absolute;
+  width:540px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:540px;
+  }
+  h1{
+    font-size:150%;
+  }
+  
+  .logo{
+    height:50px;
+  }
+  
+.btn:link,.btn:visited{
+  display:inline-block;
+  padding: 8px 15px;
+  font-weight:300;
+  text-decoration:none;
+  border-radius:30px;
+  color:#fff;
+  font-size:16px;
+}
+}
+
+
+@media only screen and (max-width: 430px) {
+  .hero-text-box{
+  position:absolute;
+  width:340px;
+  top:calc(0.6*var(--height));
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+  .row{
+      width:340px;
+  }
+  h1{
+    font-size:105%;
+  }
+  
+  .logo{
+    height:100px;
+    position:absolute;
+    top: calc(0.2*var(--height));
+    left:0;
+  }
+  
+.btn:link,.btn:visited{
+  display:inline-block;
+  padding: 8px 15px;
+  font-weight:300;
+  text-decoration:none;
+  border-radius:30px;
+  color:#fff;
+  font-size:12px;
+}
+  
+  .main-nav li{
+  display: inline-block;
+  margin-left:10px;
+}
+  
+  .main-nav{
+  float:right;
+  list-style:none;
+  margin-top:15px;
+}
+  
+}
+
+#register{
+  height: 500px;
+}
+
+.bgimg {
+  margin-left:10vw;
+    width:80vw;
+    height: calc(0.4*var(--height));
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 25px;
+}
+
+.topleft {
+    position: absolute;
+    top: 0;
+    left: 16px;
+}
+
+.bottomleft {
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+}
+
+.middle {
+    position: absolute;
+    top: calc(0.5*var(--height));
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+
+.arrows {
+  background-color: transparent;
+  position: relative;
+  left: 50vw;
+  bottom: calc(0.5*var(--height));
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  transition: background-color 0.5s;
+  transform: translate(-50%);
+  cursor: pointer;
+  
+  animation-fill-mode: forwards;
+  animation-name: fadein;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+.arrows path {
+  transition: fill stroke 0.5s;
+}
+
+.arrows:hover {
+  background-color: black;
+}
+
+.arrows:hover path {
+  stroke: white;
+  fill: white;
+}
+
+.littlearrow {
+  width: 30px;
+  left: 25px;
+  top: 15px;
+  transform: translateY(50%);
+  position: absolute;
+}
+
+.bigarrow {
+  width: 50px;
+  position: relative;
+  top: 20px;
+  left: 15px;
+  
+  animation-name: slidedown;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes slidedown {
+  0% {top: 20px;}
+  100% {top: 50px;}
+}
+
+@keyframes fadein {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+} */
+.hero-text-box {
+            position: absolute;
+            width: 1140px;
+            top: calc(0.6*var(--height));
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            padding: 10px 30px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 30px;
+            color: #fff;
+        }
+        
+        .btn:hover,
+        .btn:active {
+            background-color: rgba(12, 185, 177, 0.99);
+            color: white;
+            /*border: 2px solid #e74c3c;*/
+            transition: background-color .3s;
+        }
+        /*.btn-full:link,.btn:visited{
+  background-color:#e74c3c;
+}*/
+        
+        .btn-ghost:link,
+        .btn:visited {
+            border: 2px solid rgba(12, 185, 177, 0.99);
+        }
+        
+        @media only screen and (max-width: 1140px) {
+            .hero-text-box {
+                position: absolute;
+                width: 940px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 940px;
+            }
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .hero-text-box {
+                position: absolute;
+                width: 840px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 840px;
+            }
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .hero-text-box {
+                position: absolute;
+                width: 740px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 740px;
+            }
+            h1 {
+                font-size: 200%;
+            }
+        }
+        
+        @media only screen and (max-width: 740px) {
+            .hero-text-box {
+                position: absolute;
+                width: 640px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 640px;
+            }
+            h1 {
+                font-size: 180%;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 16px;
+            }
+        }
+        
+        @media only screen and (max-width: 640px) {
+            .hero-text-box {
+                position: absolute;
+                width: 540px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 540px;
+            }
+            h1 {
+                font-size: 150%;
+            }
+            .logo {
+                height: 50px;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 16px;
+            }
+        }
+        
+        @media only screen and (max-width: 430px) {
+            .hero-text-box {
+                position: absolute;
+                width: 340px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 340px;
+            }
+            h1 {
+                font-size: 105%;
+            }
+            .logo {
+                height: 100px;
+                position: absolute;
+                top: calc(0.26*var(--height));
+                left: 0;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 12px;
+            }
+            .main-nav li {
+                display: inline-block;
+                margin-left: 10px;
+            }
+            .main-nav {
+                float: right;
+                list-style: none;
+                margin-top: 15px;
+            }
+        }
+        
+        #container {
+            height: var(--height);
+            width:100vw;
+        }
+        
+        .bgimg {
+            margin-left: 10vw;
+            width: 80vw;
+            height: calc(0.4*var(--height));
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 25px;
+        }
+        
+        .topleft {
+            position: absolute;
+            top: 0;
+            left: 16px;
+        }
+        
+        .bottomleft {
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+        }
+        
+        .middle {
+            position: absolute;
+            top: calc(0.5*var(--height));
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .arrows {
+            background-color: transparent;
+            position: relative;
+            left: 50vw;
+            bottom: calc(0.5*var(--height));
+            width: 80px;
+            height: 80px;
+            border-radius: 50px;
+            transition: background-color 0.5s;
+            transform: translate(-50%);
+            cursor: pointer;
+            animation-fill-mode: forwards;
+            animation-name: fadein;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
+        
+        .arrows path {
+            transition: fill stroke 0.5s;
+        }
+        
+        .arrows:hover {
+            background-color: black;
+        }
+        
+        .arrows:hover path {
+            stroke: white;
+            fill: white;
+        }
+        
+        .littlearrow {
+            width: 30px;
+            left: 25px;
+            top: 15px;
+            transform: translateY(50%);
+            position: absolute;
+        }
+        
+        .bigarrow {
+            width: 50px;
+            position: relative;
+            top: 20px;
+            left: 15px;
+            animation-name: slidedown;
+            animation-duration: 0.5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-direction: alternate;
+        }
+
+        .register {
+            width: 600px;
+            padding-top: calc(var(--height)/2 - 200px);
+            margin-left: calc(50% - 300px);
+        }
+        
+        @keyframes slidedown {
+            0% {
+                top: 20px;
+            }
+            100% {
+                top: 50px;
+            }
+        }
+        
+        @keyframes fadein {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCrphpoB8N9n52mf1E6V5vVbNTkaaS_V-Q",
+        authDomain: "gaia-f511d.firebaseapp.com",
+        databaseURL: "https://gaia-f511d.firebaseio.com",
+        projectId: "gaia-f511d",
+        storageBucket: "gaia-f511d.appspot.com",
+        messagingSenderId: "1066778570053"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+
+        
+        <header>
+          <% include ../views/templates/head_tranparent %>
+                <!--video autoplay muted loop id="myVideo">
+                        <source src="demo1.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                      </video-->
+                <!-- <div class="hero-text-box">
+                  <h1>The Game that you are waiting for now release<br> GAIA
+                  </h1>
+                    <a class="btn btn-ghost" href="/register">Register Now!</a>
+                    <a class="btn btn-ghost" href="/login">Login</a>
+                </div> -->
+              </header>
+
+              <div class="hero-text-box">
+                <h1>Be the Hero to save the World - GAIA </h1>
+                  <h2>Portal Release:</h2>
+                  <h3> &nbsp; - Android &nbsp;<a href="game/Gaiav2.apk">Gaiav2.apk</a></br> </h3>
+                    
+                </p>
+            </div>
+          
+          
+
+        <script>
+          
+
+        </script>
+</body>
+
+</html>

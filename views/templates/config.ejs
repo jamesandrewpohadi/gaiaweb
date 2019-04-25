@@ -1,0 +1,68 @@
+<style>
+    :root {
+    /* --main-color:rgb(50, 10, 135); */
+    /* --main-color:rgba(7, 52, 94, 0.99); */
+    --main-color:rgba(3, 67, 63, 0.99);
+    --complement-color: rgba(12, 185, 177, 1);
+    /* --main-color-transparent: rgba(7, 52, 94, 0); */
+    --main-color-transparent:rgba(3, 67, 63, 0);
+    --height: 100vh;
+
+  }
+
+  @font-face {
+            font-family: "Xolonium-Regular";
+            src: url('fonts/Xolonium-Regular.ttf') format("truetype");
+            /* Safari, Android, iOS */
+        }
+
+        @font-face {
+            font-family: "Honeyflower-Regular";
+            src: url('fonts/Honeyflower-Regular.woff') format("truetype");
+            /* Safari, Android, iOS */
+        }
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+            font-size: 14px;
+        }
+
+        p {
+            font-family: "Xolonium-Regular";
+            text-indent: 50px;
+            margin: 30px;
+            color: rgba(rgb(0, 0, 0), 0.9);
+            /* font-size: 1em; */
+            line-height: 1.5;
+        }
+</style>
+<script>
+    //     document.documentElement.style
+    // .setProperty('--height', window.innerHeight+"px");
+    orientationChanged().then(function() {
+      // Profit
+        document.documentElement.style
+    .setProperty('--height', window.innerHeight+"px");
+    });
+    function orientationChanged() {
+  const timeout = 120;
+  return new window.Promise(function(resolve) {
+    const go = (i, height0) => {
+      window.innerHeight != height0 || i >= timeout ?
+        resolve() :
+        window.requestAnimationFrame(() => go(i + 1, height0));
+    };
+    go(0, window.innerHeight);
+  });
+}
+
+window.addEventListener('orientationchange', function () {
+    orientationChanged().then(function() {
+      // Profit
+        document.documentElement.style
+    .setProperty('--height', window.innerHeight+"px");
+    });
+});
+</script>

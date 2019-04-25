@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<style>
+    /* for pollution graph ===========================================================================*/
+    
+    .pollution-graph {
+        height: 50vh;
+        padding:3em;
+    }
+    /* html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif} */
+    
+    .line {
+        fill: none;
+        stroke: #ffab00;
+        stroke-width: 3;
+    }
+    
+    .overlay {
+        fill: none;
+        pointer-events: all;
+    }
+    /* Style the dots by assigning a fill and stroke */
+    
+    .dot {
+        fill: #ffab00;
+        stroke: #fff;
+    }
+    
+    .focus circle {
+        fill: none;
+        stroke: steelblue;
+    }
+    /* for general content ================================= */
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    @media only screen and (max-width: 1140px) {
+        .hero-text-box {
+            position: absolute;
+            width: 940px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 940px;
+        }
+    }
+    
+    @media only screen and (max-width: 960px) {
+        .hero-text-box {
+            position: absolute;
+            width: 840px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 840px;
+        }
+    }
+    
+    @media only screen and (max-width: 960px) {
+        .hero-text-box {
+            position: absolute;
+            width: 740px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 740px;
+        }
+        h1 {
+            font-size: 200%;
+        }
+    }
+    
+    @media only screen and (max-width: 740px) {
+        .hero-text-box {
+            position: absolute;
+            width: 640px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 640px;
+        }
+        h1 {
+            font-size: 180%;
+        }
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            padding: 8px 15px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+    
+    @media only screen and (max-width: 640px) {
+        .hero-text-box {
+            position: absolute;
+            width: 540px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 540px;
+        }
+        h1 {
+            font-size: 150%;
+        }
+        .logo {
+            height: 50px;
+        }
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            padding: 8px 15px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+    
+    @media only screen and (max-width: 430px) {
+        .hero-text-box {
+            position: absolute;
+            width: 340px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .row {
+            width: 340px;
+        }
+        h1 {
+            font-size: 105%;
+        }
+        .logo {
+            height: 100px;
+            position: absolute;
+            top: 26%;
+            left: 0;
+        }
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            padding: 8px 15px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 12px;
+        }
+    }
+    
+    #register {
+        height: 500px;
+    }
+    
+    .event {
+        min-height: 400px !important;
+        width: 80vw;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 25px;
+    }
+
+    .event p {
+        font-family: "Honeyflower-Regular" !important;
+        font-size: 1.2em;
+    }
+    
+    .topleft {
+        position: absolute;
+        top: 0;
+        left: 16px;
+    }
+
+    .topleft p {
+        margin-left:0px;
+    }
+    
+    .bottomleft {
+        position: absolute;
+        bottom: 0;
+        padding-left: 16px;
+    }
+
+    .bottomleft p {
+        margin-left: 0px;
+    }
+    
+    .middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
+    .arrows {
+        background-color: transparent;
+        position: relative;
+        left: 50vw;
+        bottom: 50vh;
+        width: 80px;
+        height: 80px;
+        border-radius: 50px;
+        transition: background-color 0.5s;
+        transform: translate(-50%);
+        cursor: pointer;
+        animation-fill-mode: forwards;
+        animation-name: fadein;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+    }
+    
+    .arrows path {
+        transition: fill stroke 0.5s;
+    }
+    
+    .arrows:hover {
+        background-color: black;
+    }
+    
+    .arrows:hover path {
+        stroke: white;
+        fill: white;
+    }
+    
+    .littlearrow {
+        width: 30px;
+        left: 25px;
+        top: 15px;
+        transform: translateY(50%);
+        position: absolute;
+    }
+    
+    .bigarrow {
+        width: 50px;
+        position: relative;
+        top: 20px;
+        left: 15px;
+        animation-name: slidedown;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+    }
+    
+    @keyframes slidedown {
+        0% {
+            top: 20px;
+        }
+        100% {
+            top: 50px;
+        }
+    }
+    
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .content {
+        padding-top: 150px;
+    }
+    /* for horizontal graph */
+    
+    .chartLegendContainer {
+        width: 200px;
+    }
+    
+    .bc-legend span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .bc-legend-color {
+        width: 40px;
+        height: 20px;
+    }
+    
+    .bc-legend-label {
+        padding: 0 10px;
+    }
+    
+    .bc-y-axis path,
+    .bc-y-axis .tick line {
+        fill: transparent;
+    }
+    
+    .bc-x-axis path,
+    .bc-x-axis line {
+        fill: none;
+        stroke: #eee;
+        shape-rendering: crispEdges;
+    }
+    
+    .bc-axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+        fill: #888;
+    }
+    
+    #tooltip {
+        position: absolute;
+        text-align: center;
+        width: 40px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        pointer-events: none;
+    }
+    
+    #tooltip.hidden {
+        display: none;
+    }
+    
+    #tooltip p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .w3-container {
+        padding: 16px;
+        border-radius:2em;
+    }
+
+    .svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+}
+
+.resource {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.table {
+    width: 90vw !important;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+</style>
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCrphpoB8N9n52mf1E6V5vVbNTkaaS_V-Q",
+        authDomain: "gaia-f511d.firebaseapp.com",
+        databaseURL: "https://gaia-f511d.firebaseio.com",
+        projectId: "gaia-f511d",
+        storageBucket: "gaia-f511d.appspot.com",
+        messagingSenderId: "1066778570053"
+    };
+    firebase.initializeApp(config);
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+<body>
+    <% include ../views/templates/header %>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="content">
+
+            <!-- Header -->
+            <header class="w3-container" style="padding-top:22px">
+                <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+            </header>
+            <div class="pollution-graph col-md-6 col-sm-10">
+              </div>
+            </br>
+            <div class="row">
+                <div class="resource col-md-3 col-xs-6">
+                    <div class="w3-container w3-red w3-padding-16">
+                        <div class="w3-left"><i class="fas fa-water w3-xxxlarge"></i></div>
+                        <div class="w3-right">
+                            <h3 class="cement"></h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Cement</h4>
+                    </div>
+                </div>
+                <div class="resource col-md-3 col-xs-6">
+                    <div class="w3-container w3-blue w3-padding-16">
+                        <div class="w3-left"><i class="fas fa-cloud-meatball w3-xxxlarge"></i></div>
+                        <div class="w3-right">
+                            <h3 class="food"></h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Food</h4>
+                    </div>
+                </div>
+                <div class="resource col-md-3 col-xs-6">
+                    <div class="w3-container w3-teal w3-padding-16">
+                        <div class="w3-left"><i class="fas fa-gem w3-xxxlarge"></i></div>
+                        <div class="w3-right">
+                            <h3 class="ore"></h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Ore</h4>
+                    </div>
+                </div>
+                <div class="resource col-md-3 col-xs-6">
+                    <div class="w3-container w3-orange w3-text-white w3-padding-16">
+                        <div class="w3-left"><i class="fas fa-tint w3-xxxlarge"></i></div>
+                        <div class="w3-right">
+                            <h3 class="water"></h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Water</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- below for horizontal graph -->
+            <div id="tooltip" class="hidden">
+                <p><span id="value"></span></p>
+            </div>
+
+            
+
+            <!-- Below for pollution graph -->
+
+            <table class="ranking table table-responsive table-hover col-sm-10">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Player</th>
+                        <th scope="col">Contamination Level</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+
+            <div class="w3-panel">
+                <div class="w3-row-padding">
+
+                    <div class="w3-twothird">
+                        <h5>Feeds</h5>
+                        <table class="w3-table w3-striped w3-white">
+                            <tr>
+                                <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+                                <td>New record, over 90 views.</td>
+                                <td><i>10 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+                                <td>Database error.</td>
+                                <td><i>15 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+                                <td>New record, over 40 users.</td>
+                                <td><i>17 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+                                <td>New comments.</td>
+                                <td><i>25 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+                                <td>Check transactions.</td>
+                                <td><i>28 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+                                <td>CPU overload.</td>
+                                <td><i>35 mins</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+                                <td>New shares.</td>
+                                <td><i>39 mins</i></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h2>Global Events:</h2>
+            <div class="events"> </div>
+
+            <!-- End page content -->
+        </div>
+
+        <script>
+        </script>
+
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+
+
+        firebase.database().ref("/users/"+localStorage.getItem("gaiausername")+"/game/resources/cement").once('value', function(snapshot) {
+            $(".cement").text(snapshot.val());
+  })
+
+  firebase.database().ref("/users/"+localStorage.getItem("gaiausername")+"/game/resources/food").once('value', function(snapshot) {
+            $(".food").text(snapshot.val());
+  })
+  firebase.database().ref("/users/"+localStorage.getItem("gaiausername")+"/game/resources/ore").once('value', function(snapshot) {
+            $(".ore").text(snapshot.val());
+  })
+  firebase.database().ref("/users/"+localStorage.getItem("gaiausername")+"/game/resources/water").once('value', function(snapshot) {
+            $(".water").text(snapshot.val());
+  })
+
+    
+
+   
+    if (!localStorage.getItem("gaiausername")) {
+        window.location.href = '/login';
+    }
+    // 2. Use the margin convention practice 
+    //var margin = {top: 50, right: 50, bottom: 50, left: 50}
+    width = $('.pollution-graph').width() // Use the window's width 
+        , height = $('.pollution-graph').height() // Use the window's height
+
+    // The number of datapoints
+    var n = 21;
+
+    // 5. X scale will use the index of our data
+    var xScale = d3.scaleLinear()
+        .domain([0, n - 1]) // input
+        .range([0, width]); // output
+
+    // 6. Y scale will use the randomly generate number 
+    var yScale = d3.scaleLinear()
+        .domain([0, 1]) // input 
+        .range([height, 0]); // output 
+
+    // 7. d3's line generator
+    var line = d3.line()
+        .x(function(d, i) {
+            return xScale(i);
+        }) // set the x values for the line generator
+        .y(function(d) {
+            return yScale(d.y);
+        }) // set the y values for the line generator 
+        .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+    // 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
+    var dataset = d3.range(n).map(function(d) {
+        return {
+            "y": d3.randomUniform(1)()
+        }
+    })
+
+    // 1. Add the SVG to the page and employ #2
+    var svg = d3.select(".pollution-graph").append("svg")
+        // .attr("width", width)
+        // .attr("height", height)
+        .attr("preserveAspectRatio", "xMinYMin meet")
+   .attr("viewBox", "0 0 "+ width + " "+ height)
+   //class to make it responsive
+   .classed("svg-content-responsive", true) 
+        .append("g")
+        .attr("transform", "translate(" + 0 + "," + 0 + ")");
+
+    // 3. Call the x axis in a group tag
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+
+    // 4. Call the y axis in a group tag
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+    // 9. Append the path, bind the data, and call the line generator 
+    svg.append("path")
+        .datum(dataset) // 10. Binds data to the line 
+        .attr("class", "line") // Assign a class for styling 
+        .attr("d", line); // 11. Calls the line generator 
+
+    // 12. Appends a circle for each datapoint 
+    svg.selectAll(".dot")
+        .data(dataset)
+        .enter().append("circle") // Uses the enter().append() method
+        .attr("class", "dot") // Assign a class for styling
+        .attr("cx", function(d, i) {
+            return xScale(i)
+        })
+        .attr("cy", function(d) {
+            return yScale(d.y)
+        })
+        .attr("r", 5)
+        .on("mouseover", function(a, b, c) {
+            console.log(a)
+            this.attr('class', 'focus')
+        })
+        .on("mouseout", function() {})
+        //       .on("mousemove", mousemove);
+
+    //   var focus = svg.append("g")
+    //       .attr("class", "focus")
+    //       .style("display", "none");
+
+    //   focus.append("circle")
+    //       .attr("r", 4.5);
+
+    //   focus.append("text")
+    //       .attr("x", 9)
+    //       .attr("dy", ".35em");
+
+    //   svg.append("rect")
+    //       .attr("class", "overlay")
+    //       .attr("width", width)
+    //       .attr("height", height)
+    //       .on("mouseover", function() { focus.style("display", null); })
+    //       .on("mouseout", function() { focus.style("display", "none"); })
+    //       .on("mousemove", mousemove);
+
+    //   function mousemove() {
+    //     var x0 = x.invert(d3.mouse(this)[0]),
+    //         i = bisectDate(data, x0, 1),
+    //         d0 = data[i - 1],
+    //         d1 = data[i],
+    //         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+    //     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
+    //     focus.select("text").text(d);
+    //   }
+
+    // for count down
+
+    var database = firebase.database();
+
+    function countDown(element, date) {
+        setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = date.getTime() - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            $(element).text(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(countDown);
+                $(element).text("EXPIRED");
+            }
+        }, 1000);
+    }
+
+       
+
+   
+
+    function createEvent(id, event_title, date, message, img) {
+        var html = '<div class="event ' + id + ' col-xs-10 col-xs-offset-1"><div class="topleft"> <p>' + event_title + '</p> </div> <div class="middle"><h1>COMING</h1> <p id="time' + id + '" style="font-size:30px"></p></div><div class="bottomleft"> <p>' + message + '</p></div>'
+        $(".events").append(html);
+        $(".event." + id).css("background-image", 'linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.7)),url(' + img + ')')
+        countDown("#time" + id, new Date(date));
+    }
+    var idx = 0;
+
+    firebase.database().ref('/events').once('value', function(snapshot) {
+                snapshot.forEach(function(data) {
+                    var key = data.key;
+                    data = data.val();
+                    createEvent(idx, key, data.date, data.message, data.imgurl);
+                    idx++;
+                });
+              });
+                       
+
+                //createEvent("4","1000 Mangrove Planting","3/5/2019, 3:15 PM","test event", 'https://www.w3schools.com/w3images/forestbridge.jpg ');
+                //createEvent("5","mangrove","3/3/2019, 3:15 PM","test event 2", 'https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/bali-nusa-tenggara/bali/bali/Image3.jpg');
+                //createEvent("6","No Plastic Challenge","4/4/2019, 3:15 PM","test event 3", 'https://www.euractiv.com/wp-content/uploads/sites/2/2018/04/shutterstock_389376568-800x450.jpg');
+                // firebase.auth().onAuthStateChanged(function(user) {
+                //     if (user) {
+                //         $(".user").addClass("register")
+                //         $(".user").text(user.email);
+                //     } else {
+                //         // No user is signed in.
+                //     }
+                // });
+
+                // for horizontal graph
+
+                var data = [{
+                    data: [{
+                        target: {
+                            id: 'MED_SURG',
+                            name: 'Med/Surg'
+                        },
+                        count: 6
+                    }, {
+                        target: {
+                            id: 'ICU',
+                            name: 'ICU'
+                        },
+                        count: 5
+                    }, {
+                        target: {
+                            id: 'SPI_INICU',
+                            name: 'Spine/INICU'
+                        },
+                        count: 1
+                    }, {
+                        target: {
+                            id: 'INT',
+                            name: 'Intermediate'
+                        },
+                        count: 3
+                    }, {
+                        target: {
+                            id: 'TELE',
+                            name: 'Tele'
+                        },
+                        count: 1
+                    }, {
+                        target: {
+                            id: 'SPEC',
+                            name: 'Specialty'
+                        },
+                        count: 0
+                    }],
+                    source: 'ED'
+                }, {
+                    data: [{
+                        target: {
+                            id: 'MED_SURG',
+                            name: 'Med/Surg'
+                        },
+                        count: 5
+                    }, {
+                        target: {
+                            id: 'ICU',
+                            name: 'ICU'
+                        },
+                        count: 2
+                    }, {
+                        target: {
+                            id: 'SPI_INICU',
+                            name: 'Spine/INICU'
+                        },
+                        count: 4
+                    }, {
+                        target: {
+                            id: 'INT',
+                            name: 'Intermediate'
+                        },
+                        count: 0
+                    }, {
+                        target: {
+                            id: 'TELE',
+                            name: 'Tele'
+                        },
+                        count: 1
+                    }, {
+                        target: {
+                            id: 'SPEC',
+                            name: 'Specialty'
+                        },
+                        count: 0
+                    }],
+                    source: 'PACU'
+                }];
+
+                var UNIT_LABEL_WIDTH = 100;
+                var UNIT_LABEL_HEIGHT = 25;
+                var GUTTER_WIDTH = 25;
+
+                var chartContainer = '.chart-container';
+                var chartLegendContainer = '.chart-legend-container';
+
+                var margins = {
+                    left: UNIT_LABEL_WIDTH,
+                    bottom: UNIT_LABEL_HEIGHT,
+                    right: GUTTER_WIDTH
+                };
+
+                
+
+                var width = 500;
+                var height = 400;
+
+                var series = data.map(function(d) {
+                    return d.source;
+                });
+
+                var dataset = data.map(function(d) {
+                    return d.data.map(function(o, i) {
+                        // Structure it so that your numeric axis (the stacked amount) is y
+                        return {
+                            y: o.count,
+                            x: o.target.name
+                        };
+                    });
+                });
+
+                //d3.stack()(dataset);
+
+                var dataset = dataset.map(function(group) {
+                    return group.map(function(d) {
+                        // Invert the x and y values, and y0 becomes x0
+                        return {
+                            x: d.y,
+                            y: d.x,
+                            x0: d.y0
+                        };
+                    });
+                });
+
+                var svg = d3.select(chartContainer)
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height + margins.bottom)
+                    .append('g')
+                    .attr('transform', 'translate(' + margins.left + ', 0)');
+
+                var units = dataset[0].map(function(d) {
+                  console.log("d.y");
+                    return d.y;
+                });
+
+                var yScale = d3.scaleBand()
+                    .domain(units)
+                d3.scaleBand()
+                    .rangeRound([0, width])
+                    .padding(0.1);
+
+                var yAxis = d3.axisLeft(yScale);
+
+                var xMax = d3.max(dataset, function(group) {
+                    var groupMax = d3.max(group, function(d) {
+                        return d.x + d.x0;
+                    });
+                    return groupMax;
+                });
+
+                var xScale = d3.scaleLinear()
+                    .domain([0, xMax])
+                    .range([0, width]);
+
+                var xAxis = d3.axisBottom(xScale);
+
+                var colors = function(i) {
+                    return i ? '#30A7D6' : '#16557F';
+                };
+
+                var groups = svg.selectAll('g')
+                    .data(dataset)
+                    .enter()
+                    .append('g')
+                    .style('fill', function(d, i) {
+                        return colors(i);
+                    });
+
+                groups.selectAll('rect')
+                    .data(function(d) {
+                        return d;
+                    })
+                    .enter()
+                    .append('rect')
+                    .attr('x', function(d) {
+                        return xScale(d.x0);
+                    })
+                    .attr('y', function(d, i) {
+                        return yScale(d.y);
+                    })
+                    .attr('height', function(d) {
+                        return yScale.bandwidth();
+                    })
+                    .attr('width', function(d) {
+                        console.log(d.x);
+                        return 10;
+                    })
+                    .on('mouseover', function(d) {
+                        var xPos = parseFloat(d3.select(this).attr('x')) / 2 + width / 2;
+                        var yPos = parseFloat(d3.select(this).attr('y')) + yScale.bandwidth() / 2;
+                        d3.select('#tooltip')
+                            .style('left', xPos + 'px')
+                            .style('top', yPos + 'px')
+                            .select('#value')
+                            .text(d.x);
+                        d3.select('#tooltip').classed('hidden', false);
+                    })
+                    .on('mouseout', function() {
+                        d3.select('#tooltip').classed('hidden', true);
+                    });
+
+                svg.append('g')
+                    .attr('class', 'bc-x-axis bc-axis')
+                    .attr('transform', 'translate(0,' + height + ')')
+                    .call(xAxis);
+
+                svg.append('g')
+                    .attr('class', 'bc-y-axis bc-axis')
+                    .call(yAxis);
+
+                // Legend
+                var legendContainer = d3.select(chartLegendContainer)
+                    .append('div')
+                    .attr('class', 'bc-legend');
+
+                legendContainer
+                    .append('span')
+                    .attr('class', 'bc-legend-label')
+                    .html(series[0]);
+
+                series.forEach(function(s, i) {
+                    legendContainer.append('span')
+                        .attr('class', 'bc-legend-color')
+                        .style('background-color', colors(i));
+                });
+
+                legendContainer
+                    .append('span')
+                    .attr('class', 'bc-legend-label')
+                    .html(series[1]);
+                    var rankIndex = 0;
+
+                    var ref = firebase.database().ref("users");
+ref.orderByChild("game/contamination").on("child_added", function(snapshot) {
+    rankIndex += 1;
+    $(".ranking").append("<tr><th scope='row'>"+rankIndex+"</th><td>"+snapshot.key+"</td><td>"+snapshot.val().game.contamination+"</td><td>@mdo</td></tr>")
+  console.log(snapshot.key + " was " + snapshot.val().game.contamination + " m tall");
+});
+console.log(firebase_query("/users/"+localStorage.getItem("gaiausername")+"/game/resources/cement"));
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        
+        
+        
+        .row {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        
+        header {
+            /* background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.7)),url(https://i.imgur.com/wlg3Xf5.png); */
+            /* background-image: linear-gradient(5deg, white 10vw, transparent 0%), url("files/images/earth2.jpg"); */
+            background-image: url("files/images/earth2.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 1.20*var(--height);
+        }
+        
+        h1 {
+            margin: 0;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 240%;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            word-spacing: 4px;
+            text-shadow: 2px 2px 9px rgba(0, 0, 10, .8);
+        }
+        
+        
+        /* p::first-letter {
+      float: left;
+      display: inline;
+      padding: 25px 10px 15px 0;
+      color: #333;
+      font-size: 5em;
+      line-height: 0.2;
+    } */
+
+    @media only screen and (max-width: 800px) {
+        .paralax {
+            height: calc(0.5*var(--height));
+            width: 100vw;
+        }
+        .paralax-wrapper {
+    width:100vw;
+    height: calc(0.5*var(--height));
+    background-image: linear-gradient(5deg, white 10vw, transparent 10%);
+    overflow: hidden;
+}
+}
+
+@media only screen and (min-width: 800px) {
+        .paralax {
+            height: calc(var(--height));
+            width: 100vw;
+            
+        }
+        .paralax-wrapper {
+    width:100vw;
+    height: calc(var(--height));
+    background-image: linear-gradient(5deg, white 10vw, transparent 0%);
+    overflow: hidden;
+}
+}
+
+
+        
+        
+        
+        .hero-text-box {
+            position: absolute;
+            width: 1140px;
+            top: calc(0.6*var(--height));
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            padding: 10px 30px;
+            font-weight: 300;
+            text-decoration: none;
+            border-radius: 30px;
+            color: #fff;
+        }
+        
+        .btn:hover,
+        .btn:active {
+            background-color: rgba(12, 185, 177, 0.99);
+            color: white;
+            /*border: 2px solid #e74c3c;*/
+            transition: background-color .3s;
+        }
+        /*.btn-full:link,.btn:visited{
+  background-color:#e74c3c;
+}*/
+        
+        .btn-ghost:link,
+        .btn:visited {
+            border: 2px solid rgba(12, 185, 177, 0.99);
+        }
+        
+        @media only screen and (max-width: 1140px) {
+            .hero-text-box {
+                position: absolute;
+                width: 940px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 940px;
+            }
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .hero-text-box {
+                position: absolute;
+                width: 840px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 840px;
+            }
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .hero-text-box {
+                position: absolute;
+                width: 740px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 740px;
+            }
+            h1 {
+                font-size: 200%;
+            }
+        }
+        
+        @media only screen and (max-width: 740px) {
+            .hero-text-box {
+                position: absolute;
+                width: 640px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 640px;
+            }
+            h1 {
+                font-size: 180%;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 16px;
+            }
+        }
+        
+        @media only screen and (max-width: 640px) {
+            .hero-text-box {
+                position: absolute;
+                width: 540px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 540px;
+            }
+            h1 {
+                font-size: 150%;
+            }
+            .logo {
+                height: 50px;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 16px;
+            }
+        }
+        
+        @media only screen and (max-width: 430px) {
+            .hero-text-box {
+                position: absolute;
+                width: 340px;
+                top: calc(0.6*var(--height));
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .row {
+                width: 340px;
+            }
+            h1 {
+                font-size: 105%;
+            }
+            .logo {
+                height: 100px;
+                position: absolute;
+                top: calc(0.26*var(--height));
+                left: 0;
+            }
+            .btn:link,
+            .btn:visited {
+                display: inline-block;
+                padding: 8px 15px;
+                font-weight: 300;
+                text-decoration: none;
+                border-radius: 30px;
+                color: #fff;
+                font-size: 12px;
+            }
+            .main-nav li {
+                display: inline-block;
+                margin-left: 10px;
+            }
+            .main-nav {
+                float: right;
+                list-style: none;
+                margin-top: 15px;
+            }
+        }
+        
+        #container {
+            /*background-image: linear-gradient(to left, rgb(130, 59, 59), rgb(3, 67, 63));*/
+            background-color: rgb(3, 67, 63);
+            height: var(--height);
+            width:100vw;
+        }
+        
+        .bgimg {
+            margin-left: 10vw;
+            width: 80vw;
+            height: calc(0.4*var(--height));
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 25px;
+        }
+        
+        .topleft {
+            position: absolute;
+            top: 0;
+            left: 16px;
+        }
+        
+        .bottomleft {
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+        }
+        
+        .middle {
+            position: absolute;
+            top: calc(0.5*var(--height));
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .arrows {
+            background-color: transparent;
+            position: relative;
+            left: 50vw;
+            bottom: calc(0.5*var(--height));
+            width: 80px;
+            height: 80px;
+            border-radius: 50px;
+            transition: background-color 0.5s;
+            transform: translate(-50%);
+            cursor: pointer;
+            animation-fill-mode: forwards;
+            animation-name: fadein;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
+        
+        .arrows path {
+            transition: fill stroke 0.5s;
+        }
+        
+        .arrows:hover {
+            background-color: black;
+        }
+        
+        .arrows:hover path {
+            stroke: white;
+            fill: white;
+        }
+        
+        .littlearrow {
+            width: 30px;
+            left: 25px;
+            top: 15px;
+            transform: translateY(50%);
+            position: absolute;
+        }
+        
+        .bigarrow {
+            width: 50px;
+            position: relative;
+            top: 20px;
+            left: 15px;
+            animation-name: slidedown;
+            animation-duration: 0.5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-direction: alternate;
+        }
+
+        .register {
+            width: 600px;
+            padding-top: calc(var(--height)/2 - 200px);
+            margin-left: calc(50% - 300px);
+        }
+        
+        @keyframes slidedown {
+            0% {
+                top: 20px;
+            }
+            100% {
+                top: 50px;
+            }
+        }
+        
+        @keyframes fadein {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCrphpoB8N9n52mf1E6V5vVbNTkaaS_V-Q",
+            authDomain: "gaia-f511d.firebaseapp.com",
+            databaseURL: "https://gaia-f511d.firebaseio.com",
+            projectId: "gaia-f511d",
+            storageBucket: "gaia-f511d.appspot.com",
+            messagingSenderId: "1066778570053"
+        };
+        firebase.initializeApp(config);
+    </script>
+    
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@4.0.0/dist/simpleParallax.min.js"></script>
+    <header>
+
+        <% include ../views/templates/head_tranparent %>
+            <div class="hero-text-box">
+                <h1>Be the hero to save <br> the earth - GAIA
+                  </h1>
+                <a class="btn btn-ghost" href="#container">Register Now!</a>
+                <a class="btn btn-ghost" href="/login">Login</a>
+            </div>
+
+    </header>
+
+    <!-- views/head_tranparent.ejs -->
+    <p>
+        Gaia, An alternate world which utilizes mangroves as their energy/life/power source. Gaia has been severely depleted by the humans who abused and taken for granted by the humans. As a result, climate change has occurred, devastating Gaia. Mutation of the pollution caused by humans created monsters which constantly haunt the humans. The humans are about to get wiped out by the monsters and the climate disasters and with their last desperate attempt to survive, they managed to summon heroes from another world(aka players) to help and rebuild their village and lastly Gaia.
+    </p>
+    <div class="paralax-wrapper">
+            <img class="paralax" src="files/images/devastated.jpg" alt="image">
+    </div>
+    
+    <p>Due to the existence of many villages, there are many players who will thus exist in this world and their cooperative end goal is to rebuild their village and eventually rebuild Gaia. Players must hunt resources by fighting dungeons containing the mutated pollution. They could also participate in more difficult dungeons with other allied players in order to yield better rewards. When players are transported to this world, a tether link is created between the player’s Earth and the game’s Gaia.</p>
+    <img class="paralax" src="images/Tether Link.jpg" alt="image">
+    <p> This meant that real-life events that occur may be detriment to their game play or be beneficial. (If a drought was caused by climate change in real life a drought will occur in game as well, affecting the player’s village. If players contribute to a milestone in the number of mangroves grown, they will receive fun dungeons with good rewards that will encourage players to do more good). In order for the bad event to go away, bad climate change event bosses called “Disasters” are to be defeated by a global raid and the rewards given are not as good but at least there is a way for players to circumvent the bad events.
+    </p>
+    
+
+    </div>
+    <div>
+        <div id='container' class="col-sm-12">
+            <div class="register">
+                <div class='signup'>
+                    <input type='text' class="accountName" placeholder='Account Name' />
+                    <input type='text' class="email" placeholder='Email' />
+                    <input type='password' class="password" placeholder='Password' />
+                    <input type='password' class="passwordConfirm" placeholder='Confirm Password' />
+                </br> Already register:
+                    <span><a href='/login'>Enter</a></span>
+                    <button type="submit" class='submit'>Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Handles the sign in button press.
+         */
+        function toggleSignIn() {
+            if (firebase.auth().currentUser) {
+                // [START signout]
+                firebase.auth().signOut();
+                // [END signout]
+            } else {
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                if (email.length < 4) {
+                    alert('Please enter an email address.');
+                    return;
+                }
+                if (password.length < 4) {
+                    alert('Please enter a password.');
+                    return;
+                }
+                // Sign in with email and pass.
+                // [START authwithemail]
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // [START_EXCLUDE]
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
+                    document.getElementById('quickstart-sign-in').disabled = false;
+                    // [END_EXCLUDE]
+                });
+                // [END authwithemail]
+            }
+            document.getElementById('quickstart-sign-in').disabled = true;
+        }
+
+        /**
+         * Handles the sign up button press.
+         */
+        function Register() {
+            var accountName = $('.accountName').val();
+            var email = $('.email').val()
+            console.log(email);
+            var password = $('.password').val();
+            var passwordConfirm = $('.passwordConfirm').val();
+            if (password != passwordConfirm) {
+                alert('Password and Password Confirm different. Try again!');
+                return;
+            }
+            if (password.length < 4) {
+                alert('Please enter more secure password!');
+                return;
+            }
+            // Sign in with email and pass.
+            // [START createwithemail]
+            firebase.database().ref('/users/'+accountName).once('value', function(snapshot) {
+                if (snapshot.val() == null) {
+                    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE]
+                console.log(errorCode);
+                console.log(errorMessage);
+                if (errorCode == 'auth/weak-password') {
+                    alert('The password is too weak. Try again!');
+                } else {
+                    alert(errorMessage);
+                }
+                
+                // [END_EXCLUDE]
+            }).then(function() {
+                sendEmailVerification();
+                createGameVariable($('.accountName').val(),$('.email').val());
+                localStorage.setItem("gaiausername",$('.accountName').val());
+            });
+                } else {
+                    alert("This Account Name have been taken. Try Again!");
+                }
+            })
+            
+            
+                // [END createwithemail]
+        }
+
+        function createGameVariable(name,email) {
+            firebase.database().ref("users/"+name).set({"GRO":1000,"game":{"contamination":10,"currency":500,"friends":"","buildings":{"academyBuilding":0,"cementBuilding":0,"foodBuilding":0,"oreBuilding":0,"treeBuilding":0,"waterBuilding":0},"level":1,"space":10,"villageLevel":1,"population":100,"resources":{"cement":0,"food":0,"ore":0,"water":0},"wish":{"cement":0,"food":0,"ore":0,"water":0}},"mail":email});
+            firebase.database().ref("game/market/academy/"+name).set({"amount":-1,"price":0});
+            firebase.database().ref("game/market/cement/"+name).set({"amount":-1,"price":0});
+            firebase.database().ref("game/market/food/"+name).set({"amount":-1,"price":0});
+            firebase.database().ref("game/market/ore/"+name).set({"amount":-1,"price":0});
+            firebase.database().ref("game/market/water/"+name).set({"amount":-1,"price":0});
+        }
+
+        /**
+         * Sends an email verification to the user.
+         */
+        function sendEmailVerification() {
+            // [START sendemailverification]
+            firebase.auth().currentUser.sendEmailVerification().then(function() {
+                // Email Verification sent!
+                // [START_EXCLUDE]
+                alert('Email Verification Sent!');
+                // [END_EXCLUDE]
+            });
+            // [END sendemailverification]
+        }
+
+        function sendPasswordReset() {
+            var email = $('.email').val();
+            console.log(email)
+                // [START sendpasswordemail]
+            firebase.auth().sendPasswordResetEmail(email).then(function() {
+                // Password Reset Email Sent!
+                // [START_EXCLUDE]
+                alert('Password Reset Email Sent!');
+                // [END_EXCLUDE]
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE]
+                if (errorCode == 'auth/invalid-email') {
+                    alert(errorMessage);
+                } else if (errorCode == 'auth/user-not-found') {
+                    alert(errorMessage);
+                }
+                console.log(error);
+                // [END_EXCLUDE]
+            });
+            // [END sendpasswordemail];
+        }
+        $(".submit").click(function() {
+            Register();
+        })
+
+        // Paralax
+        var image = document.getElementsByClassName('paralax');
+        new simpleParallax(image, {
+            scale: 1.5
+        });
+        $('.bgimg').css('background-image', 'url(' + 'https://www.w3schools.com/w3images/forestbridge.jpg ' + ')');
+        
+        
+    </script>
+</body>
+
+</html>

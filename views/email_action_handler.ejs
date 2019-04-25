@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <% include ../views/templates/config %>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+      .content {
+        margin-top:150px;
+      }
+
+      .verifyEmail {
+        display: none;
+        background-color : var(--main-color);
+        margin-top: calc(50vh - 3em);
+        padding-top:3em;
+        height: 10em;
+        text-align: center;
+        color:aliceblue;
+      }
+
+      .success, .fail {
+        display:none;
+      }
+    </style>
+    
+</head>
+<body>
+    <% include ../views/templates/header %> 
+
+    <!-- <div class="content">
+        
+    </div> -->
+    <div class="verifyEmail col-xs-12 col-md-8 col-md-offset-2">
+        <div class="success">
+          Your email have been verified
+          <a href="/download">Download</a>
+        </div>
+        <div class="fail">
+          Code is invalid or expired
+          <button type="button">Resend</button>
+        </div>
+      </div>
+
+    
+    
+        <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // TODO: Implement getParameterByName()
+          function getSearchParameters() {
+      var prmstr = window.location.search.substr(1);
+      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+function transformToAssocArray( prmstr ) {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+}
+
+var params = getSearchParameters();
+          // Get the action to complete.
+          var mode = params['mode'];
+          // Get the one-time code from the query parameter.
+          var actionCode = params['oobCode'];
+        //   // (Optional) Get the continue URL from the query parameter if available.
+        //   var continueUrl = getParameterByName('continueUrl');
+        //   // (Optional) Get the language code if available.
+        //   var lang = getParameterByName('lang') || 'en';
+        
+          // Configure the Firebase SDK.
+          // This is the minimum configuration required for the API to be used.
+          var config = {
+            'apiKey': "AIzaSyCrphpoB8N9n52mf1E6V5vVbNTkaaS_V-Q" // Copy this key from the web initialization
+                                // snippet found in the Firebase console.
+          };
+          var app = firebase.initializeApp(config);
+          var auth = app.auth();
+        
+          // Handle the user management action.
+          switch (mode) {
+            case 'resetPassword':
+              // Display reset password handler and UI.
+              handleResetPassword(auth, actionCode);
+              break;
+            case 'recoverEmail':
+              // Display email recovery handler and UI.
+              handleRecoverEmail(auth, actionCode);
+              break;
+            case 'verifyEmail':
+              // Display email verification handler and UI.
+              console.log("email");
+              handleVerifyEmail(auth, actionCode);
+              break;
+            default:
+              // Error: invalid mode.
+          }
+        }, false);
+
+        function handleResetPassword(auth, actionCode) {
+  // Localize the UI to the selected language as determined by the lang
+  // parameter.
+  var accountEmail;
+  // Verify the password reset code is valid.
+  auth.verifyPasswordResetCode(actionCode).then(function(email) {
+    var accountEmail = email;
+
+    // TODO: Show the reset screen with the user's email and ask the user for
+    // the new password.
+    
+
+    // Save the new password.
+    auth.confirmPasswordReset(actionCode, newPassword).then(function(resp) {
+      // Password reset has been confirmed and new password updated.
+
+      // TODO: Display a link back to the app, or sign-in the user directly
+      // if the page belongs to the same domain as the app:
+      // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+
+      // TODO: If a continue URL is available, display a button which on
+      // click redirects the user back to the app via continueUrl with
+      // additional state determined from that URL's parameters.
+    }).catch(function(error) {
+      // Error occurred during confirmation. The code might have expired or the
+      // password is too weak.
+    });
+  }).catch(function(error) {
+    // Invalid or expired action code. Ask user to try to reset the password
+    // again.
+  });
+}
+
+function handleRecoverEmail(auth, actionCode) {
+  // Localize the UI to the selected language as determined by the lang
+  // parameter.
+  var restoredEmail = null;
+  // Confirm the action code is valid.
+  auth.checkActionCode(actionCode).then(function(info) {
+    // Get the restored email address.
+    restoredEmail = info['data']['email'];
+
+    // Revert to the old email.
+    return auth.applyActionCode(actionCode);
+  }).then(function() {
+    // Account email reverted to restoredEmail
+
+    // TODO: Display a confirmation message to the user.
+
+    // You might also want to give the user the option to reset their password
+    // in case the account was compromised:
+    auth.sendPasswordResetEmail(restoredEmail).then(function() {
+      // Password reset confirmation sent. Ask user to check their email.
+    }).catch(function(error) {
+      // Error encountered while sending password reset code.
+    });
+  }).catch(function(error) {
+    // Invalid code.
+  });
+}
+
+function handleVerifyEmail(auth, actionCode) {
+  // Localize the UI to the selected language as determined by the lang
+  // parameter.
+  // Try to apply the email verification code.
+  auth.applyActionCode(actionCode).then(function(resp) {
+    // Email address has been verified.
+    console.log("Your email have been verified");
+    // TODO: Display a confirmation message to the user.
+    // You could also provide the user with a link back to the app.
+    
+    $(".verifyEmail").show();
+    $(".verifyEmail .success").show();
+    // TODO: If a continue URL is available, display a button which on
+    // click redirects the user back to the app via continueUrl with
+    // additional state determined from that URL's parameters.
+  }).catch(function(error) {
+    // Code is invalid or expired. Ask the user to verify their email address
+    // again.
+    
+    $(".verifyEmail").show();
+    $(".verifyEmail .fail").show();
+  });
+}
+        </script>
+</body>
